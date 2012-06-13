@@ -42,6 +42,9 @@ class User
   # property :avatar_updated_at, DateTime
   
   property :per_page_count, Integer, :index => true, :default => 25
+
+  # PID of the user
+  property :pid, String, :required => true, :unique => true
   
   # Full name of the user
   property :name, String, :lazy => true, :lazy => true

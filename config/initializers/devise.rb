@@ -147,7 +147,13 @@ Devise.setup do |config|
     # you can override these if you need to, but cas_base_url is usually enough
     config.cas_login_url = Snorby::CONFIG[:cas_config]["login_url"]
     config.cas_logout_url = Snorby::CONFIG[:cas_config]["logout_url"]
-    # config.cas_validate_url = "https://cas.myorganization.com/serviceValidate"
+    config.cas_validate_url = Snorby::CONFIG[:cas_config]["validate_url"]
+	
+	# Don't create users automatically
+	config.cas_create_user = false
+
+	# Authenticate with the PID of the user
+	config.cas_username_column = :pid
   end
   
 end

@@ -85,6 +85,6 @@ module Snorby
     config.filter_parameters += [:password]
 
     # SSL
-    # config.force_ssl = true
+    config.force_ssl = true
   end
 end

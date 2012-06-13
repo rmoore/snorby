@@ -2,7 +2,7 @@
 SnortSchema.create(:vseq => 107, :ctime => Time.now, :version => "Snorby #{Snorby::VERSION}") if SnortSchema.first.blank?
 
 # Default user setup
-User.create(:name => 'Administrator', :email => 'snorby@snorby.org', :password => 'snorby', :password_confirmation => 'snorby', :admin => true) if User.all.blank?
+User.create(:name => 'Reese Moore', :email => 'ram@vt.edu', :pid => 'ram', :password => 'snorby', :password_confirmation => 'snorby', :admin => true) if User.all.blank?
 
 # Snorby General Settings
 Setting.set(:company, 'Snorby.org') unless Setting.company?
