@@ -374,6 +374,16 @@ module Snorby
         db_select(sql)
       end
 
+      def latest_five_distinct_signatures
+        sql = %{
+          select signature from (
+            select signature, MAX(timestamp) as timestamp from event group by signature order by timestamp desc limit 5
+          ) as signature;
+        }
+
+        db_select(sql)
+      end
+
     end
   end
 end

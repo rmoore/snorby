@@ -22,6 +22,7 @@ module Snorby
     
     include Rails.application.routes.url_helpers # brings ActionDispatch::Routing::UrlFor
     include ActionView::Helpers::TagHelper
+    include Snorby::Jobs::CacheHelper
     
     def self.build_report(range='yesterday')
       @range = range
@@ -50,9 +51,7 @@ module Snorby
 
       @last_cache = @cache.get_last ? @cache.get_last.ran_at : Time.now
 
-      sigs = Event.all(:limit => 5, :order => [:timestamp.desc], 
-                       :fields => [:sig_id], 
-                       :unique => true).map(&:signature).map(&:sig_id)
+      sigs = latest_five_distinct_signatures
 
       @recent_events = Event.all(:sig_id => sigs).group_by do |x| 
         x.sig_id 
